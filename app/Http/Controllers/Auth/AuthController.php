@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace GDGFoz\Http\Controllers\Auth;
 
-use App\User;
+use GDGFoz\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use GDGFoz\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

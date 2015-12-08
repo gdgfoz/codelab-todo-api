@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace GDGFoz\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

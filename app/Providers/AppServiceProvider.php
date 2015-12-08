@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace GDGFoz\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
