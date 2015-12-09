@@ -19,3 +19,27 @@ $factory->define(GDGFoz\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+
+
+$factory->define(\GDGFoz\Category::class, function (Faker\Generator $faker) {
+
+    return [
+        'category' => $faker->sentence,
+        'path_img' => $faker->imageUrl(400, 500, 'food'),
+        'color'    => $faker->hexColor
+    ];
+
+});
+
+$factory->define(\GDGFoz\Task::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->sentence,
+        'description' => $faker->paragraph(2),
+        'user_id' => $faker->randomElement( \GDGFoz\User::get()->lists('id')->toArray() ),
+        'category_id' => $faker->randomElement( \GDGFoz\Category::get()->lists('id')->toArray() ),
+        'status' => $faker->boolean(80),
+    ];
+
+});

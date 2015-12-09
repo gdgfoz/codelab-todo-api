@@ -86,7 +86,7 @@ class ResponseFractal
         }
 
         $resource = new Item($data, $this->getTransformer($transformer), $resourceKey);
-        $rootScope = $this->fractal->createData($resource)->toArray();
+        $rootScope = $this->manager->createData($resource)->toArray();
 
         return $this->respondWithArray($rootScope);
     }
@@ -125,7 +125,7 @@ class ResponseFractal
     {
         $this->statusCode =  201;
         $resource = new Item($item, $callback);
-        $rootScope = $this->fractal->createData($resource);
+        $rootScope = $this->manager->createData($resource);
         $data = $rootScope->toArray();
         $data['message'] = $msg;
         return $this->respondWithArray($data);
@@ -135,7 +135,7 @@ class ResponseFractal
     {
         $this->statusCode =  200;
         $resource = new Item($item, $callback);
-        $rootScope = $this->fractal->createData($resource);
+        $rootScope = $this->manager->createData($resource);
         $data = $rootScope->toArray();
         $data['message'] = $msg;
         return $this->respondWithArray($data);

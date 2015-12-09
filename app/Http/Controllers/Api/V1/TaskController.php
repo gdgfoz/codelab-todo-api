@@ -25,7 +25,7 @@ class TaskController extends Controller
     public function __construct(TaskRepository $taskRepository)
     {
         $this->taskRepository = $taskRepository;
-        $this->taskRepository->setPorPage(15);
+        $this->taskRepository->setPerPage(15);
     }
 
 

@@ -3,6 +3,8 @@
 namespace GDGFoz\Repositories;
 
 
+use GDGFoz\Task;
+
 class TaskRepository extends BaseRepository
 {
 
@@ -25,7 +27,7 @@ class TaskRepository extends BaseRepository
      */
     public function all()
     {
-        //paginar
+        return $this->model->orderBy('name')->paginate($this->perPage);
     }
 
     /**
@@ -42,7 +44,7 @@ class TaskRepository extends BaseRepository
      */
     public function findByCategory($categoryId)
     {
-        return $this->model->where('user_id', $this->getUserAuth()->id)->where('category_id', $categoryId)->paginate($this->porPage);
+        return $this->model->where('user_id', $this->getUserAuth()->id)->where('category_id', $categoryId)->paginate($this->perPage);
     }
 
 }

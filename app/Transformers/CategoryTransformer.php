@@ -1,6 +1,7 @@
 <?php
 namespace GDGFoz\Transformers;
 
+use GDGFoz\Category;
 use League\Fractal;
 
 class CategoryTransformer extends Fractal\TransformerAbstract
@@ -10,9 +11,10 @@ class CategoryTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id'          => (int) $category->id,
-            'name'        => $category->name,
-            'description' => $category->description,
-            'src'         => asset('uploads/categories/' . $category->path_image),
+            'category'    => $category->category,
+            'src'         => $category->path_img,
+            'color'       => $category->color,
+            //'src'         => asset('uploads/categories/' . $category->path_img),
         ];
     }
 

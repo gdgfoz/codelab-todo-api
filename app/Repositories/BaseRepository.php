@@ -8,22 +8,22 @@ use GDGFoz\User;
 abstract class BaseRepository
 {
 
-    protected $porPage = 15;
+    protected $perPage = 15;
 
     /**
      * @return int
      */
-    public function getPorPage()
+    public function getPerPage()
     {
-        return $this->porPage;
+        return $this->perPage;
     }
 
     /**
-     * @param int $porPage
+     * @param int $perPage
      */
-    public function setPorPage($porPage)
+    public function setPerPage($perPage)
     {
-        $this->porPage = $porPage;
+        $this->perPage = $perPage;
     }
 
 
