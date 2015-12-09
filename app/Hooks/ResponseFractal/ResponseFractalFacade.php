@@ -1,6 +1,6 @@
 <?php
 
-namespace GDGFoz\ResponseFractal;
+namespace GDGFoz\Hooks\ResponseFractal;
 
 use Illuminate\Support\Facades\Facade;
 
