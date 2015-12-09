@@ -15,6 +15,7 @@ class TaskTransformer extends Fractal\TransformerAbstract
             'name'        => $task->name,
             'description' => $task->description,
             'status'      => boolval($task->status),
+            'created_at'  => (string) $task->created_at
         ];
     }
 

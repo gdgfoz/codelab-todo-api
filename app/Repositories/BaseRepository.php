@@ -33,7 +33,7 @@ abstract class BaseRepository
      */
     public function getUserAuth()
     {
-
+        return User::first();
     }
 
 }
