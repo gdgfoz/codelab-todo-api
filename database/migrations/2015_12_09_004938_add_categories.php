@@ -12,7 +12,13 @@ class AddCategories extends Migration
      */
     public function up()
     {
-        //
+           Schema::create('categories', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('category');
+            $table->string('path_img');
+            $table->string('color');
+            
+        });
     }
 
     /**
@@ -22,6 +28,6 @@ class AddCategories extends Migration
      */
     public function down()
     {
-        //
+          Schema::drop('categories');
     }
 }
