@@ -13,8 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'GDGFoz\Events\SomeEvent' => [
-            'GDGFoz\Listeners\EventListener',
+        'GDGFoz\Events\UserCreateEvent' => [
+            'GDGFoz\Listeners\CreateTasksListener',
+            //'GDGFoz\Listeners\SendEmailListener',
         ],
     ];
 

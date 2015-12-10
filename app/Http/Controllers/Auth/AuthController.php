@@ -2,6 +2,9 @@
 
 namespace GDGFoz\Http\Controllers\Auth;
 
+use GDGFoz\Events\UserCreateEvent;
+
+use Illuminate\Http\Request;
 use GDGFoz\User;
 use Validator;
 use GDGFoz\Http\Controllers\Controller;
@@ -10,6 +13,10 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
+    protected $redirectPath = '/dashboard';
+    protected $loginPath = '/login';
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -62,4 +69,28 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postRegister(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        \Auth::login($this->create($request->all()));
+
+        event( new UserCreateEvent(\Auth::user()));
+
+        return redirect($this->redirectPath());
+    }
+
 }

@@ -60,8 +60,8 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $taks = $this->taskRepository->find($id);
-        return \ResponseFractal::respondItem($taks, new TaskTransformer());
+        $task = $this->taskRepository->find($id);
+        return \ResponseFractal::respondItem($task, new TaskTransformer());
     }
 
 

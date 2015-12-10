@@ -36,6 +36,7 @@ class TaskRepository extends BaseRepository
      */
     public function find($taskId)
     {
+        return $this->model->where('user_id', $this->getUserAuth()->id)->where('id', $taskId)->first();
     }
 
     /**
