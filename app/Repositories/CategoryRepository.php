@@ -8,35 +8,25 @@ use GDGFoz\Category;
 class CategoryRepository extends BaseRepository
 {
 
-    /**
-     * @var Category
-     */
-    protected $model;
 
     /**
-     * TaskRepository constructor.
-     * @param Category $model
+     * Specify Model class name
+     *
+     * @return String
      */
-    public function __construct(Category $model)
+    function getClassModel()
     {
-        $this->model = $model;
+        return Category::class;
     }
 
     /**
      * Lista todas as categorias
      */
-    public function all()
+    public function listCategories()
     {
-        return $this->model->orderBy('category')->get();
+        $this->query->orderBy('category');
+        return $this;
     }
 
-    /**
-     * Retorna uma categoria
-     * @param $categoryId
-     */
-    public function find($categoryId)
-    {
-        return $this->model->find($categoryId);
-    }
 
 }

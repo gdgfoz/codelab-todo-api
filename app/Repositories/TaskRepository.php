@@ -3,40 +3,42 @@
 namespace GDGFoz\Repositories;
 
 
+
 use GDGFoz\Task;
 
 class TaskRepository extends BaseRepository
 {
 
     /**
-     * @var Task
+     * Specify Model class name
+     *
+     * @return String
      */
-    protected $model;
-
-    /**
-     * TaskRepository constructor.
-     * @param Task $model
-     */
-    public function __construct(Task $model)
+    function getClassModel()
     {
-        $this->model = $model;
+        return Task::class;
     }
 
     /**
      * Lista todas as categorias
+     * @return $this
      */
-    public function all()
+    public function listTaskByUser()
     {
-        return $this->model->orderBy('name')->paginate($this->perPage);
+        $this->scopefindByUser()->scopeOrderTasks();
+        return $this;
     }
 
     /**
      * Retorna uma categoria
-     * @param $categoryId
+     * @param $id
+     * @param array $columns
+     * @return mixed
      */
-    public function find($taskId)
+    public function find($id, $columns = array('*'))
     {
-        return $this->model->where('user_id', $this->getUserAuth()->id)->where('id', $taskId)->first();
+        $this->scopefindByUser();
+        return $this->query->find($id, $columns);
     }
 
     /**
@@ -45,7 +47,14 @@ class TaskRepository extends BaseRepository
      */
     public function findByCategory($categoryId)
     {
-        return $this->model->where('user_id', $this->getUserAuth()->id)->where('category_id', $categoryId)->paginate($this->perPage);
+        $this->scopefindByUser();
+        return $this->query->where('category_id', $categoryId);
+    }
+
+    public function scopeOrderTasks()
+    {
+        $this->query->orderBy('status', 'ASC')->orderBy('created_at', 'DESC');
+        return $this;
     }
 
 }

@@ -34,7 +34,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = $this->categoryRepository->all();
+        $categories = $this->categoryRepository->listCategories()->all();
         return \ResponseFractal::respondCollection($categories, new CategoryTransformer());
     }
 

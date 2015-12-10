@@ -25,7 +25,7 @@ class TaskController extends Controller
     public function __construct(TaskRepository $taskRepository)
     {
         $this->taskRepository = $taskRepository;
-        $this->taskRepository->setPerPage(15);
+        $this->taskRepository->setPerPage(10);
     }
 
 
@@ -36,8 +36,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = $this->taskRepository->all();
-        return \ResponseFractal::respondPaginatedCollection($tasks, new TaskTransformer());
+        $tasks = $this->taskRepository->listTaskByUser()->paginate();
+        return \ResponseFractal::respondCollection($tasks, new TaskTransformer());
     }
 
     /**
@@ -48,8 +48,8 @@ class TaskController extends Controller
      */
     public function findByCategory($id)
     {
-        $tasks = $this->taskRepository->findByCategory($id);
-        return \ResponseFractal::respondPaginatedCollection($tasks, new TaskTransformer());
+        $tasks = $this->taskRepository->findByCategory($id)->paginate();
+        return \ResponseFractal::respondCollection($tasks, new TaskTransformer());
     }
 
     /**
