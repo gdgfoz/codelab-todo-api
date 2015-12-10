@@ -9,12 +9,12 @@
         "laravel/framework": "5.1.*",
         "lucadegasperi/oauth2-server-laravel": "5.0.*",
         "barryvdh/laravel-cors": "0.7.x",
-        "league/fractal": "^0.13.0",
-        "barryvdh/laravel-debugbar": "^2.0",
-        "barryvdh/laravel-ide-helper": "^2.1",
-        "filp/whoops": "^1.1"
+        "league/fractal": "^0.13.0"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.1",
+        "filp/whoops": "^1.1",
+        "itsgoingd/clockwork": "~1.9",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",

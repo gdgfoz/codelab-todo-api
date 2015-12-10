@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', true),
+    'debug' => env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt_BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -155,7 +155,7 @@ return [
         /*
          * Dev packages
          */
-        Barryvdh\Debugbar\ServiceProvider::class,
+        Clockwork\Support\Laravel\ClockworkServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
@@ -211,10 +211,6 @@ return [
         #Aditionais
         'Authorizer'=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
         'ResponseFractal' => GDGFoz\Hooks\ResponseFractal\ResponseFractalFacade::class,
-
-        #DEV
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
     ],
 
 ];
