@@ -9,7 +9,7 @@
         },
         "version": "1.0.0"
     },
-    "host": "localhost:8000",
+    "host": "todo.api.gdgfoz.org",
     "basePath": "/api/v1",
     "schemes": [
         "http"
@@ -333,8 +333,8 @@
             "type": "oauth2",
             "in": "header",
             "flow": "accessCode",
-            "authorizationUrl": "http://localhost:8000/api/v1/oauth/dialog",
-            "tokenUrl": "http://localhost:8000/api/v1/oauth/access_token",
+            "authorizationUrl": "http://todo.api.gdgfoz.org/api/v1/oauth/dialog",
+            "tokenUrl": "http://todo.api.gdgfoz.org/api/v1/oauth/access_token",
             "scopes": {
                 "read:tasks": "Permitir leitura de suas tarefas.",
                 "read:profile": "Informa\u00e7\u00f5es basica do seu perfil (nome, email)"
