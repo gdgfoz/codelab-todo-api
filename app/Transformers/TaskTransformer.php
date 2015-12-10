@@ -14,6 +14,24 @@ class TaskTransformer extends Fractal\TransformerAbstract
         'user'
     ];
 
+    /**
+     * @param Task $task
+     * @return array
+     *
+     *  @SWG\Definition(
+     *   definition="Task",
+     *   required={"categoryId", "name"},
+     *   @SWG\Property(
+     *             property="categoryId",
+     *             type="integer",
+     *             format="int32"
+     *   ),
+     *   @SWG\Property(
+     *             property="name",
+     *             type="string"
+     *   )
+     * )
+     */
     public function transform(Task $task)
     {
         return [
@@ -29,11 +47,11 @@ class TaskTransformer extends Fractal\TransformerAbstract
             'links'   => [
                 [
                     'rel' => 'self',
-                    'uri' => \URL::to('api/v1/tasks', $task->id),
+                    'uri' => \URL::to('api/v1/tasks', $task->id) . "?" . \Request::getQueryString(),
                 ],
                 [
                     'rel' => 'category',
-                    'uri' => \URL::to('api/v1/tasks/category', $task->category_id),
+                    'uri' => \URL::to('api/v1/tasks/category', $task->category_id) . "?" . \Request::getQueryString(),
                 ]
             ]
         ];

@@ -10,6 +10,31 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     protected $defaultIncludes = [];
 
+    /**
+     *
+     * @param User $user
+     * @return array
+     *
+     *  @SWG\Definition(
+     *   definition="User",
+     *   required={"name"},
+     *   @SWG\Property(
+     *             property="id",
+     *             type="integer",
+     *             format="int32"
+     *   ),
+     *   @SWG\Property(
+     *             property="name",
+     *             description="Seu nome de usuario",
+     *             type="string"
+     *   ),
+     *   @SWG\Property(
+     *             property="createdAt",
+     *             description="Data de criacao",
+     *             type="datetime"
+     *   )
+     * )
+     */
     public function transform(User $user)
     {
         return [

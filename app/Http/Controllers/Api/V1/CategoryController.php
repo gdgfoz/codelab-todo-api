@@ -31,6 +31,19 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
+     *  @SWG\Get(
+     *     path="/categories",
+     *     description="Lista todas as categories",
+     *     operationId="api.categories.index",
+     *     tags={"dashboard"},
+     *     @SWG\Response(
+     *          response=200,
+     *          description="Lista todas as categorias",
+     *          @SWG\Schema(type="array", @SWG\Items(ref="#/definitions/Category") ),
+     *     )
+     * )
+     *
      */
     public function index()
     {
@@ -43,6 +56,35 @@ class CategoryController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     *
+     *   @SWG\Get(
+     *     path="/categories/{id}",
+     *     description="Detalhe de uma categoria",
+     *     operationId="api.categories.show",
+     *     tags={"dashboard"},
+     *     @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="Id da categoria",
+     *          required=true,
+     *          type="integer"
+     *      ),
+     *     @SWG\Response(
+     *          response=200,
+     *          description="Detalhe da categoria",
+     *          @SWG\Schema(@SWG\Items(ref="#/definitions/Category") ),
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Categoria não encontrada.",
+     *     ),
+     *     security={
+     *         {
+     *             "api_oauth": {"read:tasks"}
+     *         }
+     *     }
+     * )
+     *
      */
     public function show($id)
     {
