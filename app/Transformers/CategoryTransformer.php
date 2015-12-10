@@ -32,12 +32,12 @@ class CategoryTransformer extends Fractal\TransformerAbstract
      *   @SWG\Property(
      *             property="createdAt",
      *             description="Data de criação",
-     *             type="datetime"
+     *             type="dateTime"
      *   ),
      *   @SWG\Property(
      *             property="updatedAt",
      *             description="Data da ultima atualização",
-     *             type="datetime"
+     *             type="dateTime"
      *   ),
      *   @SWG\Property(
      *             property="src",

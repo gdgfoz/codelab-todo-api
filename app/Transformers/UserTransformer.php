@@ -31,7 +31,7 @@ class UserTransformer extends Fractal\TransformerAbstract
      *   @SWG\Property(
      *             property="createdAt",
      *             description="Data de criacao",
-     *             type="datetime"
+     *             type="dateTime"
      *   )
      * )
      */

@@ -291,11 +291,11 @@
                 },
                 "createdAt": {
                     "description": "Data de cria\u00e7\u00e3o",
-                    "type": "datetime"
+                    "type": "dateTime"
                 },
                 "updatedAt": {
                     "description": "Data da ultima atualiza\u00e7\u00e3o",
-                    "type": "datetime"
+                    "type": "dateTime"
                 },
                 "src": {
                     "description": "URL do caminho absoluto da imagem que representa essa categoria",
@@ -318,7 +318,7 @@
                 },
                 "createdAt": {
                     "description": "Data de criacao",
-                    "type": "datetime"
+                    "type": "dateTime"
                 }
             }
         }
