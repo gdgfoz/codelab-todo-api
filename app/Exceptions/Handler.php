@@ -3,7 +3,10 @@
 namespace GDGFoz\Exceptions;
 
 use Exception;
+use GDGFoz\Hooks\ResponseFractal\ResponseFractal;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use League\OAuth2\Server\Exception\InvalidScopeException;
+use League\OAuth2\Server\Exception\OAuthException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -44,6 +47,11 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof ModelNotFoundException) {
             $e = new NotFoundHttpException($e->getMessage(), $e);
+        }
+
+        if ($e instanceof OAuthException) {
+            return \ResponseFractal::setStatusCode($e->httpStatusCode)
+                                   ->respondCustomError($e->getMessage(), $e->errorType, [$e->parameter]);
         }
 
         if (config('app.debug'))

@@ -29,9 +29,9 @@ class DatabaseSeeder extends Seeder
             'remember_token' => str_random(10),
         ]);
 
-        factory(\GDGFoz\User::class, 5)->create();
+        factory(\GDGFoz\User::class, 2)->create();
 
-
+        $this->registerClientOauth();
         \DB::statement('SET foreign_key_checks = 1');
 
         Model::reguard();
@@ -43,10 +43,39 @@ class DatabaseSeeder extends Seeder
             'tasks',
             'categories',
             'users',
+            'oauth_scopes',
+            'oauth_clients'
         ];
 
         foreach($tables as $table){
             \DB::table($table)->truncate();
+        }
+
+    }
+
+    protected function registerClientOauth()
+    {
+        $now = new DateTime();
+
+        DB::table('oauth_clients')->insert([
+            'id' => Config::get('gdgfoz.codelab1.api_id'),
+            'secret' => Config::get('gdgfoz.codelab1.api_secret'),
+            'name' => Config::get('gdgfoz.codelab1.name'),
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $scopes = (array) Config::get('gdgfoz.codelab1.api_scopes');
+
+        foreach( $scopes as $scope) {
+
+            DB::table('oauth_scopes')->insert([
+                'id' => $scope,
+                'description' => $scope,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ]);
+
         }
 
     }

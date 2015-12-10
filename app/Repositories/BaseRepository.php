@@ -6,6 +6,7 @@ namespace GDGFoz\Repositories;
 use GDGFoz\User;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
@@ -102,31 +103,6 @@ abstract class BaseRepository implements BaseRepositoryInterface
         $this->query->orderBy($column, $order);
         return $this;
     }
-    
-    /**
-     * Otimiza as query do Eloquent adicionando
-     * Eager Loading do Eloquent
-     * @param string cidade,cidade.estado
-     * @return \Eloquent
-     */
-    public function withEmbed($embed = null){
-
-        $embed = (is_null($embed))? \Input::get('include') : $embed;
-        $requestedEmbeds = explode(',', $embed);
-        $possibleRelationships = (array) $this->query->relationships;
-
-        $eagerLoad = array_values(
-            array_intersect( $possibleRelationships, $requestedEmbeds)
-        );
-
-        if( empty($eagerLoad) ) {
-            return $this->query->newQuery();
-        }
-
-        \Log::info($eagerLoad);
-        $this->query->with( $eagerLoad );
-        return $this;
-    }
 
     public function debug()
     {
@@ -137,10 +113,42 @@ abstract class BaseRepository implements BaseRepositoryInterface
      * Retorna o user logado no OAuth
      * @return User
      */
-    protected function getUserAuth()
+    protected function getAuthUserId()
     {
-        //Mytodo implements USER oauth 2
-        return User::first();
+
+        $userId = \Authorizer::getResourceOwnerId();
+
+        if(is_null($userId)){
+            throw new \Exception('User not logged in!');
+        }
+
+        return $userId;
+    }
+
+
+    /**
+     * Otimiza as query do Eloquent adicionando
+     * Eager Loading do Eloquent
+     * @param string cidade,cidade.estado
+     * @return \Eloquent
+     */
+    protected function scopeWithEmbed($embed = null){
+
+        $embed = (is_null($embed))? \Input::get('include') : $embed;
+        $requestedEmbeds = explode(',', $embed);
+        $possibleRelationships = (array) $this->model->relationships;
+
+        $eagerLoad = array_values(
+            array_intersect( $possibleRelationships, $requestedEmbeds)
+        );
+
+        if( ! empty($eagerLoad) ) {
+            \Log::info($eagerLoad);
+            $this->query->with( $eagerLoad );
+        }
+
+
+        return $this;
     }
 
     /**
@@ -149,7 +157,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
      */
     protected function scopefindByUser()
     {
-        $this->query->where('user_id', $this->getUserAuth()->id);
+        $this->query->where('user_id', $this->getAuthUserId());
         return $this;
     }
 

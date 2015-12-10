@@ -25,7 +25,7 @@ class TaskRepository extends BaseRepository
      */
     public function listTaskByUser()
     {
-        $this->scopefindByUser()->scopeOrderTasks();
+        $this->scopeWithEmbed()->scopefindByUser()->scopeOrderTasks();
         return $this;
     }
 
@@ -47,8 +47,9 @@ class TaskRepository extends BaseRepository
      */
     public function findByCategory($categoryId)
     {
-        $this->scopefindByUser();
-        return $this->query->where('category_id', $categoryId);
+        $this->scopeWithEmbed()->scopefindByUser()->scopeOrderTasks();
+        $this->query->where('category_id', $categoryId);
+        return $this;
     }
 
     public function scopeOrderTasks()

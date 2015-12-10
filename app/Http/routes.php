@@ -25,9 +25,10 @@ Route::get('teste', function(){
     event( new \GDGFoz\Events\UserCreateEvent($user));
 });
 
-Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'auth'], function($route){
+Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => ['auth','csrf']], function($route){
 
-    $route->get('/', 'DashboardController@index');
+    $route->get('/', ['as' => 'dash.home', 'uses' => 'DashboardController@index']);
+    $route->post('/generate-token', ['as' => 'dash.generateToken', 'uses' => 'DashboardController@generateToken']);
 
 });
 

@@ -5,7 +5,6 @@ namespace GDGFoz\Http\Controllers\Api\V1;
 
 use GDGFoz\Repositories\TaskRepository;
 use GDGFoz\Transformers\TaskTransformer;
-use Illuminate\Http\Request;
 
 use GDGFoz\Http\Requests;
 use GDGFoz\Http\Controllers\Controller;
