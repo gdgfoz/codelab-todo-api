@@ -27,4 +27,6 @@
             <button type="submit">Register</button>
         </div>
     </form>
+
+    <a href="/auth/login">Já possuo uma conta</a>
 @stop

@@ -12,5 +12,6 @@
 
 
     <p><a href="#">Documentation routes API V1</a></p>
+    <p><a href="/auth/logout">Logout</a></p>
 
 @stop

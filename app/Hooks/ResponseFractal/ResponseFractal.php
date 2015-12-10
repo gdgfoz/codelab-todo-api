@@ -82,7 +82,7 @@ class ResponseFractal
     public function respondItem($data, $transformer = null, $resourceKey = null, $onFail = true)
     {
         if($onFail === true && is_null($data) ){
-            return $this->errorNotFound();
+            return $this->respondErrorNotFound();
         }
 
         $resource = new Item($data, $this->getTransformer($transformer), $resourceKey);
@@ -99,6 +99,11 @@ class ResponseFractal
      */
     public function respondCollection($data, $transformer = null, $resourceKey = null)
     {
+
+        if ( $data instanceof LengthAwarePaginator){
+            return $this->respondPaginatedCollection($data, $transformer, $resourceKey);
+        }
+
         $resource = new Collection($data, $this->getTransformer($transformer), $resourceKey);
         $rootScope= $this->manager->createData($resource)->toArray();
 
@@ -195,7 +200,7 @@ class ResponseFractal
      *
      * @return  Response
      */
-    public function respondEForbidden($message = 'Não autorizado, sem permissão de acesso')
+    public function respondErrorForbidden($message = 'Não autorizado, sem permissão de acesso')
     {
         return $this->setStatusCode(403)->respondCustomError($message, self::CODE_FORBIDDEN);
     }
@@ -205,7 +210,7 @@ class ResponseFractal
      *
      * @return  Response
      */
-    public function respondEInternalError($message = 'Erro interno de servidor, desculpe :( ')
+    public function respondErrorInternalError($message = 'Erro interno de servidor, desculpe :( ')
     {
         return $this->setStatusCode(500)->respondCustomError($message, self::CODE_INTERNAL_ERROR);
     }
@@ -215,7 +220,7 @@ class ResponseFractal
      *
      * @return  Response
      */
-    public function respondENotFound($message = 'Não encontrado')
+    public function respondErrorNotFound($message = 'Não encontrado')
     {
         return $this->setStatusCode(404)->respondCustomError($message, self::CODE_NOT_FOUND);
     }
@@ -225,7 +230,7 @@ class ResponseFractal
      *
      * @return  Response
      */
-    public function respondEUnauthorized($message = 'Não logado')
+    public function respondErrorUnauthorized($message = 'Não logado')
     {
         return $this->setStatusCode(401)->respondCustomError($message, self::CODE_UNAUTHORIZED);
     }

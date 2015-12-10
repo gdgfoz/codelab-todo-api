@@ -39,7 +39,7 @@ $factory->define(\GDGFoz\Task::class, function (Faker\Generator $faker) {
         'description' => $faker->paragraph(2),
         'user_id' => $faker->randomElement( \GDGFoz\User::get()->lists('id')->toArray() ),
         'category_id' => $faker->randomElement( \GDGFoz\Category::get()->lists('id')->toArray() ),
-        'status' => $faker->boolean(80),
+        'status' => $faker->boolean(20),
     ];
 
 });

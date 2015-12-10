@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
 
         \DB::statement('SET foreign_key_checks = 0');
 
-        \DB::table('users')->truncate();
-        \DB::table('categories')->truncate();
-        \DB::table('tasks')->truncate();
+        $this->truncateTables();
+
+        factory(\GDGFoz\Category::class, 10)->create();
 
         factory( \GDGFoz\User::class)->create([
             'name' => 'admin',
@@ -29,11 +29,25 @@ class DatabaseSeeder extends Seeder
             'remember_token' => str_random(10),
         ]);
 
-        factory(\GDGFoz\Category::class, 10)->create();
-        factory(\GDGFoz\Task::class, 40)->create();
+        factory(\GDGFoz\User::class, 5)->create();
+
 
         \DB::statement('SET foreign_key_checks = 1');
 
         Model::reguard();
+    }
+
+    protected function truncateTables()
+    {
+        $tables = [
+            'tasks',
+            'categories',
+            'users',
+        ];
+
+        foreach($tables as $table){
+            \DB::table($table)->truncate();
+        }
+
     }
 }

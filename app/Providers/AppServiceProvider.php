@@ -2,7 +2,9 @@
 
 namespace GDGFoz\Providers;
 
+use GDGFoz\Events\UserCreateEvent;
 use GDGFoz\Hooks\ResponseFractal\ResponseFractal;
+use GDGFoz\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        User::created(function ($user) {
+            event( new UserCreateEvent($user));
+        });
     }
 
     /**

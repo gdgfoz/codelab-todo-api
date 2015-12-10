@@ -211,6 +211,9 @@ return [
         #Aditionais
         'Authorizer'=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
         'ResponseFractal' => GDGFoz\Hooks\ResponseFractal\ResponseFractalFacade::class,
+
+        #Dev alias
+        'Clockwork' => 'Clockwork\Support\Laravel\Facade',
     ],
 
 ];

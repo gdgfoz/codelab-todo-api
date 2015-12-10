@@ -18,10 +18,24 @@ class TaskTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id'          => (int) $task->id,
+            'categoryId'  => (int) $task->category_id,
             'name'        => $task->name,
             'description' => $task->description,
-            'status'      => boolval($task->status),
-            'created_at'  => (string) $task->created_at
+            'isDone'      => boolval($task->status),
+            'finalizedAt' => (string) $task->finalized_at,
+            'createdAt'   => (string) $task->created_at,
+            'updatedAt'   => (string) $task->updated_at,
+
+            'links'   => [
+                [
+                    'rel' => 'self',
+                    'uri' => \URL::to('api/v1/tasks', $task->id),
+                ],
+                [
+                    'rel' => 'category',
+                    'uri' => \URL::to('api/v1/tasks/category', $task->category_id),
+                ]
+            ]
         ];
     }
 
