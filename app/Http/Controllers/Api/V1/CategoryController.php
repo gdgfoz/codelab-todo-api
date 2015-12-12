@@ -72,7 +72,7 @@ class CategoryController extends Controller
      *     @SWG\Response(
      *          response=200,
      *          description="Detalhe da categoria",
-     *          @SWG\Schema(@SWG\Items(ref="#/definitions/Category") ),
+     *          @SWG\Schema(ref="#/definitions/Category"),
      *     ),
      *     @SWG\Response(
      *         response=404,

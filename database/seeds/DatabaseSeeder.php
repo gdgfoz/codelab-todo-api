@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
 
         $this->truncateTables();
 
-        factory(\GDGFoz\Category::class, 10)->create();
+        $this->call(OAuthSeeder::class);
+        $this->call(CategorySeeder::class);
 
         factory( \GDGFoz\User::class)->create([
             'name' => 'admin',
@@ -30,7 +31,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         factory(\GDGFoz\User::class, 2)->create();
-        $this->call(OAuthSeeder::class);
 
         \DB::statement('SET foreign_key_checks = 1');
 

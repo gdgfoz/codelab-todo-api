@@ -30,6 +30,16 @@ class CategoryTransformer extends Fractal\TransformerAbstract
      *             type="string"
      *   ),
      *   @SWG\Property(
+     *             property="srcThumb",
+     *             description="URL do caminho absoluto da imagem destaque que representa essa categoria",
+     *             type="string"
+     *   ),
+     *   @SWG\Property(
+     *             property="srcIcon",
+     *             description="URL do caminho absoluto do icon que representa essa categoria",
+     *             type="string"
+     *   ),
+     *   @SWG\Property(
      *             property="createdAt",
      *             description="Data de criação",
      *             type="dateTime"
@@ -38,11 +48,6 @@ class CategoryTransformer extends Fractal\TransformerAbstract
      *             property="updatedAt",
      *             description="Data da ultima atualização",
      *             type="dateTime"
-     *   ),
-     *   @SWG\Property(
-     *             property="src",
-     *             description="URL do caminho absoluto da imagem que representa essa categoria",
-     *             type="string"
      *   )
      * )
      */
@@ -51,11 +56,11 @@ class CategoryTransformer extends Fractal\TransformerAbstract
         return [
             'id'          => (int) $category->id,
             'category'    => $category->category,
-            'src'         => $category->path_img,
+            'srcThumb'    => asset($category->path_thumb),
+            'srcIcon'     => asset($category->path_icon),
             'color'       => $category->color,
             'createdAt'   => (string) $category->created_at,
             'updatedAt'   => (string) $category->updated_at
-            //'src'         => asset('uploads/categories/' . $category->path_img),
         ];
     }
 

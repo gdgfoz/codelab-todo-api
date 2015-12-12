@@ -76,7 +76,8 @@ Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function ($router) 
  *         ),
  *         @SWG\Property(
  *             property="error",
- *             type="string"
+ *             type="array",
+ *             description="Informações do erro"
  *         )
  *   )
  * )

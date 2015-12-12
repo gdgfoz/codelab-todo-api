@@ -29,8 +29,44 @@ class TaskTransformer extends Fractal\TransformerAbstract
      *   @SWG\Property(
      *             property="name",
      *             type="string"
+     *   ),
+     *   @SWG\Property(
+     *             property="description",
+     *             type="string"
+     *   ),
+     *   @SWG\Property(
+     *             property="isDone",
+     *             type="boolean"
+     *   ),
+     *   @SWG\Property(
+     *             property="finalizedAt",
+     *             type="dateTime"
+     *   ),
+     *   @SWG\Property(
+     *             property="createdAt",
+     *             type="dateTime"
+     *   ),
+     *   @SWG\Property(
+     *             property="updatedAt",
+     *             type="dateTime"
      *   )
      * )
+     *
+     *  @SWG\Definition(
+     *   definition="TaskInclude",
+     *   required={},
+     *   @SWG\Property(
+     *             property="category",
+     *             description="Dentro de cada tarefa, Inclui um objeto com sua respectiva categoria",
+     *             type="string",
+     *   ),
+     *   @SWG\Property(
+     *             property="user",
+     *             description="Dentro de cada tarefa, Inclui um objeto USER da pessoa que criou a tarefa",
+     *             type="string"
+     *   )
+     * )
+     *
      */
     public function transform(Task $task)
     {

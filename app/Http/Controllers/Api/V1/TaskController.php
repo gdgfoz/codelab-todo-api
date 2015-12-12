@@ -131,6 +131,13 @@ class TaskController extends Controller
      *          required=true,
      *          type="integer"
      *      ),
+     *      @SWG\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="Dentro de cada tarefa, Inclui um objeto do tipo CATEGORY/USER",
+     *          required=false,
+     *          type="string"
+     *      ),
      *     @SWG\Response(
      *          response=200,
      *          description="Lista todas as tarefas do seu perfil",
