@@ -1,6 +1,6 @@
 <?php
 
-namespace GDGFoz\Events;
+namespace App\Events;
 
 abstract class Event
 {

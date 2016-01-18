@@ -56,11 +56,7 @@
         },
         "/tasks": {
             "get": {
-                "tags": [
-                    "dashboard"
-                ],
                 "description": "Lista todas suas tarefas",
-                "operationId": "api.tasks.index",
                 "responses": {
                     "200": {
                         "description": "Lista todas as tarefas do seu perfil",
@@ -70,21 +66,12 @@
                                 "$ref": "#/definitions/Task"
                             }
                         }
-                    },
-                    "400": {
-                        "description": "Erro de requi\u00e7\u00e3o, faltando token auth",
-                        "schema": {
-                            "$ref": "#/definitions/Error_oAuth"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized action."
                     }
                 },
                 "security": [
                     {
                         "api_oauth": [
-                            "read:tasks"
+                            "oauth:tasks_read"
                         ]
                     }
                 ]
@@ -92,11 +79,7 @@
         },
         "/tasks/{id}": {
             "get": {
-                "tags": [
-                    "dashboard"
-                ],
                 "description": "Exibi detalhe de uma unica tarefa",
-                "operationId": "api.tasks.show",
                 "parameters": [
                     {
                         "name": "id",
@@ -114,21 +97,12 @@
                                 "$ref": "#/definitions/Task"
                             }
                         }
-                    },
-                    "400": {
-                        "description": "Erro de requi\u00e7\u00e3o, faltando token auth",
-                        "schema": {
-                            "$ref": "#/definitions/Error_oAuth"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized action."
                     }
                 },
                 "security": [
                     {
                         "api_oauth": [
-                            "read:tasks"
+                            "oauth:tasks_read"
                         ]
                     }
                 ]
@@ -159,24 +133,12 @@
                                 "$ref": "#/definitions/Task"
                             }
                         }
-                    },
-                    "400": {
-                        "description": "Erro de requi\u00e7\u00e3o, faltando token auth",
-                        "schema": {
-                            "$ref": "#/definitions/Error_oAuth"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized action."
-                    },
-                    "404": {
-                        "description": "Categoria n\u00e3o encontrada."
                     }
                 },
                 "security": [
                     {
                         "api_oauth": [
-                            "read:tasks"
+                            "oauth:tasks_read"
                         ]
                     }
                 ]
@@ -204,11 +166,7 @@
         },
         "/categories/{id}": {
             "get": {
-                "tags": [
-                    "dashboard"
-                ],
                 "description": "Detalhe de uma categoria",
-                "operationId": "api.categories.show",
                 "parameters": [
                     {
                         "name": "id",
@@ -222,9 +180,7 @@
                     "200": {
                         "description": "Detalhe da categoria",
                         "schema": {
-                            "items": {
-                                "$ref": "#/definitions/Category"
-                            }
+                            "$ref": "#/definitions/Category"
                         }
                     },
                     "404": {
@@ -234,7 +190,7 @@
                 "security": [
                     {
                         "api_oauth": [
-                            "read:tasks"
+                            "read:categories"
                         ]
                     }
                 ]
@@ -252,7 +208,27 @@
                     ]
                 },
                 "error": {
+                    "description": "Informa\u00e7\u00f5es do erro",
+                    "type": "array"
+                }
+            }
+        },
+        "User": {
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "description": "Seu nome de usuario",
                     "type": "string"
+                },
+                "createdAt": {
+                    "description": "Data de criacao",
+                    "type": "dateTime"
                 }
             }
         },
@@ -267,6 +243,36 @@
                     "format": "int32"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "isDone": {
+                    "type": "boolean"
+                },
+                "finalizedAt": {
+                    "type": "dateTime"
+                },
+                "createdAt": {
+                    "type": "dateTime"
+                },
+                "updatedAt": {
+                    "type": "dateTime"
+                }
+            }
+        },
+        "TaskInclude": {
+            "required": [
+
+            ],
+            "properties": {
+                "category": {
+                    "description": "Dentro de cada tarefa, Inclui um objeto com sua respectiva categoria",
+                    "type": "string"
+                },
+                "user": {
+                    "description": "Dentro de cada tarefa, Inclui um objeto USER da pessoa que criou a tarefa",
                     "type": "string"
                 }
             }
@@ -289,35 +295,20 @@
                     "description": "Cor em HEXADECIMAL da categoria",
                     "type": "string"
                 },
+                "srcThumb": {
+                    "description": "URL do caminho absoluto da imagem destaque que representa essa categoria",
+                    "type": "string"
+                },
+                "srcIcon": {
+                    "description": "URL do caminho absoluto do icon que representa essa categoria",
+                    "type": "string"
+                },
                 "createdAt": {
                     "description": "Data de cria\u00e7\u00e3o",
                     "type": "dateTime"
                 },
                 "updatedAt": {
                     "description": "Data da ultima atualiza\u00e7\u00e3o",
-                    "type": "dateTime"
-                },
-                "src": {
-                    "description": "URL do caminho absoluto da imagem que representa essa categoria",
-                    "type": "string"
-                }
-            }
-        },
-        "User": {
-            "required": [
-                "name"
-            ],
-            "properties": {
-                "id": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "name": {
-                    "description": "Seu nome de usuario",
-                    "type": "string"
-                },
-                "createdAt": {
-                    "description": "Data de criacao",
                     "type": "dateTime"
                 }
             }
@@ -336,8 +327,11 @@
             "authorizationUrl": "http://todo.api.gdgfoz.org/api/v1/oauth/dialog",
             "tokenUrl": "http://todo.api.gdgfoz.org/api/v1/oauth/access_token",
             "scopes": {
-                "read:tasks": "Permitir leitura de suas tarefas.",
-                "read:profile": "Informa\u00e7\u00f5es basica do seu perfil (nome, email)"
+                "tasks_read": "Permitir leitura de suas tarefas.",
+                "tasks_write": "Permitir criar, atualizar e excluir suas tarefas.",
+                "categories_read": "Permitir leitura de suas categorias.",
+                "categories_write": "Permitir criar, atualizar e excluir suas categorias.",
+                "profile_read": "Informa\u00e7\u00f5es basica do seu perfil (nome, email)"
             }
         }
     }

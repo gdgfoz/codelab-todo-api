@@ -1,11 +1,11 @@
 <?php
 
-namespace GDGFoz\Listeners;
+namespace App\Listeners;
 
 use Faker\Generator;
-use GDGFoz\Category;
-use GDGFoz\Events\UserCreateEvent;
-use GDGFoz\Task;
+use App\Category;
+use App\Events\UserCreateEvent;
+use App\Task;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

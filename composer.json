@@ -26,7 +26,8 @@
             "database"
         ],
         "psr-4": {
-            "GDGFoz\\": "app/"
+            "App\\": "app/",
+            "GDGFoz\\": "app/GDGFoz"
         }
     },
     "autoload-dev": {

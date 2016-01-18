@@ -1,6 +1,6 @@
 <?php
 
-namespace GDGFoz\Jobs;
+namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 

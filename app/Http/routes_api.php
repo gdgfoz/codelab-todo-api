@@ -7,19 +7,22 @@
 Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function ($router) {
 
     #Categories
-    $router->get('categories', 'CategoryController@index');
     $router->get('categories/{id}', 'CategoryController@show');
-
-    #Profile
-    $router->group(['middleware' => 'oauth:read:profile'], function($router) {
-        $router->get('profile', 'ProfileController@index');
-    });
+    $router->post('categories', 'CategoryController@store');
+    $router->put('categories/{id}', 'CategoryController@update');
+    $router->delete('categories/{id}', 'CategoryController@destroy');
 
     #Taks
-    $router->group(['middleware' => 'oauth:read:tasks'], function($router) {
-        $router->get('tasks', 'TaskController@index');
-        $router->get('tasks/category/{id}', 'TaskController@findByCategory');
-        $router->get('tasks/{id}', 'TaskController@show');
+    $router->get('tasks', 'TaskController@index');
+    $router->get('tasks/category/{id}', 'TaskController@findByCategory');
+    $router->get('tasks/{id}', 'TaskController@show');
+    $router->post('tasks', 'TaskController@store');
+    $router->put('tasks/category/{id}', 'TaskController@update');
+    $router->delete('tasks/{id}', 'TaskController@destroy');
+
+    #Profile
+    $router->group(['middleware' => 'oauth:profile_read'], function($router) {
+        $router->get('profile', 'ProfileController@index');
     });
 
     #OAuth 2
@@ -102,8 +105,11 @@ Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function ($router) 
  *   flow="accessCode",
  *   tokenUrl="http://todo.api.gdgfoz.org/api/v1/oauth/access_token",
  *   scopes={
- *      "read:tasks"    : "Permitir leitura de suas tarefas.",
- *      "read:profile"  : "Informações basica do seu perfil (nome, email)",
+ *      "tasks_read"          : "Permitir leitura de suas tarefas.",
+ *      "tasks_write"         : "Permitir criar, atualizar e excluir suas tarefas.",
+ *      "categories_read"     : "Permitir leitura de suas categorias.",
+ *      "categories_write"    : "Permitir criar, atualizar e excluir suas categorias.",
+ *      "profile_read"        : "Informações basica do seu perfil (nome, email)",
  *   }
  * )
  */

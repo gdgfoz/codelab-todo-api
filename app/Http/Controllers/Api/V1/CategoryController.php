@@ -1,13 +1,11 @@
 <?php
 
-namespace GDGFoz\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1;
 
-use GDGFoz\Repositories\CategoryRepository;
-use GDGFoz\Transformers\CategoryTransformer;
-use Illuminate\Http\Request;
-
-use GDGFoz\Http\Requests;
-use GDGFoz\Http\Controllers\Controller;
+use GDGFoz\Todo\Category\CategoryRepository;
+use GDGFoz\Todo\Category\CategoryTransformer;
+use GDGFoz\Todo\Category\CategoryRequest;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -24,6 +22,8 @@ class CategoryController extends Controller
     public function __construct(CategoryRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->middleware('oauth:categories_read',  ['only' => ['index', 'show']]);
+        $this->middleware('oauth:categories_write', ['only' => ['store', 'update', 'destroy']]);
     }
 
 
@@ -60,8 +60,6 @@ class CategoryController extends Controller
      *   @SWG\Get(
      *     path="/categories/{id}",
      *     description="Detalhe de uma categoria",
-     *     operationId="api.categories.show",
-     *     tags={"dashboard"},
      *     @SWG\Parameter(
      *          name="id",
      *          in="path",
@@ -80,7 +78,7 @@ class CategoryController extends Controller
      *     ),
      *     security={
      *         {
-     *             "api_oauth": {"read:tasks"}
+     *             "api_oauth": {"read:categories"}
      *         }
      *     }
      * )
@@ -92,5 +90,18 @@ class CategoryController extends Controller
         return \ResponseFractal::respondItem($categories, new CategoryTransformer());
     }
 
+
+    public function store(CategoryRequest $requests)
+    {
+        $category = $requests->save();
+        return \ResponseFractal::respondCreateItemSucess($category, new CategoryTransformer());
+    }
+
+    public function update(CategoryRequest $requests, $categorId)
+    {
+        $category = $this->categoryRepository->find($categorId);
+        $category = $requests->update($category);
+        return \ResponseFractal::respondUpdateItemSucess($category, new CategoryTransformer());
+    }
 
 }

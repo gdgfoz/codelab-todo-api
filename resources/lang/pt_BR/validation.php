@@ -109,4 +109,5 @@ return [
         //
     ],
 
+    'html_color' => 'Código de cor hexadecimal inválido.'
 ];

@@ -1,14 +1,13 @@
 <?php
 
-namespace GDGFoz\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1;
 
 
-use GDGFoz\Category;
-use GDGFoz\Repositories\TaskRepository;
-use GDGFoz\Transformers\TaskTransformer;
+use GDGFoz\Todo\Task\TaskRepository;
+use GDGFoz\Todo\Task\TaskTransformer;
 
-use GDGFoz\Http\Requests;
-use GDGFoz\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class TaskController extends Controller
 {
@@ -20,14 +19,16 @@ class TaskController extends Controller
 
     /**
      * CategoryController constructor.
-     * @param CategoryRepository $categoryRepository
+     * @param TaskRepository $taskRepository
+     * @internal param CategoryRepository $categoryRepository
      */
     public function __construct(TaskRepository $taskRepository)
     {
         $this->taskRepository = $taskRepository;
         $this->taskRepository->setPerPage(10);
+        $this->middleware('oauth:tasks_read',  ['only' => ['index', 'show', 'findByCategory']]);
+        $this->middleware('oauth:tasks_write', ['only' => ['store', 'update', 'destroy']]);
     }
-
 
     /**
      * Display a listing of the resource.
@@ -37,25 +38,14 @@ class TaskController extends Controller
      * @SWG\Get(
      *     path="/tasks",
      *     description="Lista todas suas tarefas",
-     *     operationId="api.tasks.index",
-     *     tags={"dashboard"},
      *     @SWG\Response(
      *          response=200,
      *          description="Lista todas as tarefas do seu perfil",
      *          @SWG\Schema( type="array", @SWG\Items(ref="#/definitions/Task") ),
      *     ),
-     *     @SWG\Response(
-     *          response=400,
-     *          description="Erro de requição, faltando token auth",
-     *          @SWG\Schema(ref="#/definitions/Error_oAuth")
-     *     ),
-     *     @SWG\Response(
-     *         response=401,
-     *         description="Unauthorized action.",
-     *     ),
      *     security={
      *         {
-     *             "api_oauth": {"read:tasks"}
+     *             "api_oauth": {"oauth:tasks_read"}
      *         }
      *     }
      * )
@@ -76,8 +66,6 @@ class TaskController extends Controller
      * *  @SWG\Get(
      *     path="/tasks/{id}",
      *     description="Exibi detalhe de uma unica tarefa",
-     *     operationId="api.tasks.show",
-     *     tags={"dashboard"},
      *     @SWG\Parameter(
      *          name="id",
      *          in="path",
@@ -90,18 +78,9 @@ class TaskController extends Controller
      *          description="Detalhe da tarefas",
      *          @SWG\Schema(@SWG\Items(ref="#/definitions/Task") ),
      *     ),
-     *     @SWG\Response(
-     *          response=400,
-     *          description="Erro de requição, faltando token auth",
-     *          @SWG\Schema(ref="#/definitions/Error_oAuth")
-     *     ),
-     *     @SWG\Response(
-     *         response=401,
-     *         description="Unauthorized action.",
-     *     ),
      *     security={
      *         {
-     *             "api_oauth": {"read:tasks"}
+     *             "api_oauth": {"oauth:tasks_read"}
      *         }
      *     }
      * )
@@ -130,35 +109,15 @@ class TaskController extends Controller
      *          description="Id da categoria que deseja visualizar as tarefas",
      *          required=true,
      *          type="integer"
-     *      ),
-     *      @SWG\Parameter(
-     *          name="id",
-     *          in="path",
-     *          description="Dentro de cada tarefa, Inclui um objeto do tipo CATEGORY/USER",
-     *          required=false,
-     *          type="string"
-     *      ),
+     *      ),     
      *     @SWG\Response(
      *          response=200,
      *          description="Lista todas as tarefas do seu perfil",
      *          @SWG\Schema(type="array", @SWG\Items(ref="#/definitions/Task") ),
      *     ),
-     *     @SWG\Response(
-     *          response=400,
-     *          description="Erro de requição, faltando token auth",
-     *          @SWG\Schema(ref="#/definitions/Error_oAuth")
-     *     ),
-     *     @SWG\Response(
-     *         response=401,
-     *         description="Unauthorized action.",
-     *     ),
-     *     @SWG\Response(
-     *         response=404,
-     *         description="Categoria não encontrada.",
-     *     ),
      *     security={
      *         {
-     *             "api_oauth": {"read:tasks"}
+     *             "api_oauth": {"oauth:tasks_read"}
      *         }
      *     }
      * )

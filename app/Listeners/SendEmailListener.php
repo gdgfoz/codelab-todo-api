@@ -1,8 +1,8 @@
 <?php
 
-namespace GDGFoz\Listeners;
+namespace App\Listeners;
 
-use GDGFoz\Events\UserCreateEvent;
+use App\Events\UserCreateEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

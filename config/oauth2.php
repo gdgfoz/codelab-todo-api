@@ -31,7 +31,7 @@ return [
 
         'password' => [
             'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
-            'callback' => '\GDGFoz\Hooks\PasswordGrantVerifier@verify',
+            'callback' => '\GDGFoz\Core\Support\PasswordGrantVerifier@verify',
             'access_token_ttl' => 3600
         ],
 

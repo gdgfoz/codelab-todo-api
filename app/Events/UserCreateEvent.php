@@ -1,9 +1,9 @@
 <?php
 
-namespace GDGFoz\Events;
+namespace App\Events;
 
-use GDGFoz\Events\Event;
-use GDGFoz\User;
+use App\Events\Event;
+use App\User;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace GDGFoz;
+namespace App;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -36,4 +36,10 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+
+    public function categories()
+    {
+        return $this->belongsToMany('GDGFoz\Todo\Category\Category', 'categories_users');
+    }
 }

@@ -38,7 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <img src="{{asset('assets/GDG_Foz_do_Iguac_u_.png')}}" alt="GDG FOZ">
+                <div class="title">To Do Api V1</div>
             </div>
         </div>
     </body>

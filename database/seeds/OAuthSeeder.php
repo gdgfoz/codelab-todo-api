@@ -13,6 +13,10 @@ class OAuthSeeder extends Seeder
     {
         $now = new DateTime();
 
+        DB::table('oauth_client_endpoints')->delete();
+        DB::table('oauth_scopes')->delete();
+        DB::table('oauth_clients')->delete();
+
         DB::table('oauth_clients')->insert([
             'id' => Config::get('gdgfoz.codelab1.api_id'),
             'secret' => Config::get('gdgfoz.codelab1.api_secret'),

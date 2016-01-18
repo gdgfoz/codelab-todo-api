@@ -20,10 +20,10 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('teste', function(){
-    $user = \GDGFoz\User::first();
-    event( new \GDGFoz\Events\UserCreateEvent($user));
-});
+//Route::get('teste', function(){
+//    $user = \App\User::first();
+//    event( new \App\Events\UserCreateEvent($user));
+//});
 
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => ['auth','csrf']], function($route){
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace GDGFoz\Providers;
+namespace App\Providers;
 
-use GDGFoz\Events\UserCreateEvent;
-use GDGFoz\Hooks\ResponseFractal\ResponseFractal;
-use GDGFoz\User;
+use App\Events\UserCreateEvent;
+use App\User;
+use GDGFoz\Core\Support\ResponseFractal;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
         User::created(function ($user) {
             event( new UserCreateEvent($user));
         });
+
+        \Validator::extend('html_color', function($attribute, $value, $parameters, $validator) {
+            return (preg_match('/^#[a-f0-9]{6}$/i', $value));
+        });
+
     }
 
     /**

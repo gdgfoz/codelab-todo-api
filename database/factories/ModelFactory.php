@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(GDGFoz\User::class, function (Faker\Generator $faker) {
+$factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -22,7 +22,7 @@ $factory->define(GDGFoz\User::class, function (Faker\Generator $faker) {
 
 
 
-$factory->define(\GDGFoz\Category::class, function (Faker\Generator $faker) {
+$factory->define(\App\Category::class, function (Faker\Generator $faker) {
 
     return [
         'category' => $faker->sentence,
@@ -32,13 +32,13 @@ $factory->define(\GDGFoz\Category::class, function (Faker\Generator $faker) {
 
 });
 
-$factory->define(\GDGFoz\Task::class, function (Faker\Generator $faker) {
+$factory->define(\App\Task::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->sentence,
         'description' => $faker->paragraph(2),
-        'user_id' => $faker->randomElement( \GDGFoz\User::get()->lists('id')->toArray() ),
-        'category_id' => $faker->randomElement( \GDGFoz\Category::get()->lists('id')->toArray() ),
+        'user_id' => $faker->randomElement( \App\User::get()->lists('id')->toArray() ),
+        'category_id' => $faker->randomElement( \App\Category::get()->lists('id')->toArray() ),
         'status' => $faker->boolean(20),
     ];
 

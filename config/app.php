@@ -140,10 +140,10 @@ return [
         /*
          * Application Service Providers...
          */
-        GDGFoz\Providers\AppServiceProvider::class,
-        GDGFoz\Providers\AuthServiceProvider::class,
-        GDGFoz\Providers\EventServiceProvider::class,
-        GDGFoz\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
         /*
          * Additional packages
@@ -211,7 +211,7 @@ return [
 
         #Aditionais
         'Authorizer'=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
-        'ResponseFractal' => GDGFoz\Hooks\ResponseFractal\ResponseFractalFacade::class,
+        'ResponseFractal' => GDGFoz\Core\Facades\ResponseFractal::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 

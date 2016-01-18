@@ -1,9 +1,9 @@
 <?php
 
-namespace GDGFoz\Exceptions;
+namespace App\Exceptions;
 
 use Exception;
-use GDGFoz\Hooks\ResponseFractal\ResponseFractal;
+use App\Hooks\ResponseFractal\ResponseFractal;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use League\OAuth2\Server\Exception\InvalidScopeException;
 use League\OAuth2\Server\Exception\OAuthException;

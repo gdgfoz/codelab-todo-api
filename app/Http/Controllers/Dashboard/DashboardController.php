@@ -1,8 +1,8 @@
 <?php
 
-namespace GDGFoz\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Dashboard;
 
-use GDGFoz\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller

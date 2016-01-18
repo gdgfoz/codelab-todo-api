@@ -1,6 +1,6 @@
 <?php
 
-namespace GDGFoz\Providers;
+namespace App\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,9 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'GDGFoz\Events\UserCreateEvent' => [
-            'GDGFoz\Listeners\CreateTasksListener',
-            //'GDGFoz\Listeners\SendEmailListener',
+        'App\Events\UserCreateEvent' => [
+            'App\Listeners\CreateTasksListener',
+            //'App\Listeners\SendEmailListener',
         ],
     ];
 

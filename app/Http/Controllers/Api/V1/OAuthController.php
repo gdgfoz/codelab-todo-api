@@ -1,12 +1,12 @@
 <?php
 
-namespace GDGFoz\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1;
 
 
 use Authorizer;
 use Input;
-use GDGFoz\Http\Requests;
-use GDGFoz\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class OAuthController extends Controller
 {

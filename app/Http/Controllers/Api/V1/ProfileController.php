@@ -1,11 +1,11 @@
 <?php
 
-namespace GDGFoz\Http\Controllers\Api\V1;
+namespace App\Http\Controllers\Api\V1;
 
 
-use GDGFoz\Http\Requests;
-use GDGFoz\Http\Controllers\Controller;
-use GDGFoz\Transformers\UserTransformer;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\Transformers\UserTransformer;
 
 class ProfileController extends Controller
 {

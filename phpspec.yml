@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: GDGFoz
-        psr4_prefix: GDGFoz
+        namespace: App
+        psr4_prefix: App
         src_path: app
