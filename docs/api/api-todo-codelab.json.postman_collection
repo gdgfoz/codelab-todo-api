@@ -1,0 +1,515 @@
+{
+	"id": "39c48e18-ae34-396f-379f-701fb69f112a",
+	"name": "Code Lab",
+	"description": "",
+	"order": [],
+	"folders": [
+		{
+			"id": "72af3257-d086-e29f-cae2-9d0bd48bfdb7",
+			"name": "Auth ",
+			"description": "",
+			"order": [
+				"35717af6-1a03-49eb-c9c2-5a8085af6417",
+				"94c928f2-eceb-1a3d-3564-5030a350226f",
+				"a044da87-9c19-3341-4e12-0ea30bed26af"
+			],
+			"owner": "51026",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a"
+		},
+		{
+			"id": "c69de60d-6708-3fe8-506c-fccf39e0862d",
+			"name": "Categories",
+			"description": "",
+			"order": [
+				"e68438c7-0eed-4775-b661-f756fd20c7cb",
+				"86fa8e05-8948-d402-caa0-0b132be9972a",
+				"ef9e3c1c-bdf4-6761-25f0-0991ccbef045",
+				"aada1a6a-848d-89da-fc23-0ef6f71219d9"
+			],
+			"owner": "51026"
+		},
+		{
+			"id": "b22bd38b-c18c-0056-c3ca-ee7f07388876",
+			"name": "Tasks",
+			"description": "",
+			"order": [
+				"8e319dea-2678-b166-a2d2-d30a1cae1d9c",
+				"2c18ae68-6cd1-17c9-4c4e-240fad70300b",
+				"f1f49b0c-381d-7ab4-0ccc-83d37498bf2f",
+				"cc01a18c-0fde-c371-7687-ca8fe744f7c0"
+			],
+			"owner": "51026"
+		}
+	],
+	"timestamp": 1453000347999,
+	"owner": "51026",
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "2c18ae68-6cd1-17c9-4c4e-240fad70300b",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/tasks",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455298522343,
+			"name": "tasks.index",
+			"description": "",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": []
+		},
+		{
+			"id": "35717af6-1a03-49eb-c9c2-5a8085af6417",
+			"headers": "",
+			"url": "{{url}}/auth/register",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "name",
+					"value": "val",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "teste@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password_confirmation",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455296971540,
+			"name": "auth.register",
+			"description": "",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": []
+		},
+		{
+			"id": "86fa8e05-8948-d402-caa0-0b132be9972a",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/categories/15",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "category",
+					"value": "testeaaa",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "color",
+					"value": "#333333",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1453082335248,
+			"name": "Category.show",
+			"description": "",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": [],
+			"folder": "c69de60d-6708-3fe8-506c-fccf39e0862d"
+		},
+		{
+			"id": "8e319dea-2678-b166-a2d2-d30a1cae1d9c",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/tasks/category/20",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "username",
+					"value": "teste@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_id",
+					"value": "android_code_lab_1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_secret",
+					"value": "2cn45h6df9ak67bdsfa72",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "grant_type",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "scope",
+					"value": "tasks_read,tasks_write,categories_read,categories_write,profile_read",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455298407851,
+			"name": "tasks.category",
+			"description": "Lista TAKS de uma categoria",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": [],
+			"folder": "b22bd38b-c18c-0056-c3ca-ee7f07388876"
+		},
+		{
+			"id": "94c928f2-eceb-1a3d-3564-5030a350226f",
+			"headers": "",
+			"url": "{{url}}/oauth/access_token",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "teste@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_id",
+					"value": "android_code_lab_1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_secret",
+					"value": "2cn45h6df9ak67bdsfa72",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "grant_type",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "scope",
+					"value": "tasks_read,tasks_write,categories_read,categories_write,profile_read",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455297002099,
+			"name": "OAuth.login",
+			"description": "",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": []
+		},
+		{
+			"id": "a044da87-9c19-3341-4e12-0ea30bed26af",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/profile",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "name",
+					"value": "val",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "val23smir.php@gmail.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password_confirmation",
+					"value": "123456",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455294631701,
+			"name": "Profile.index",
+			"description": "Lista dados do USER logado",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": [],
+			"folder": "72af3257-d086-e29f-cae2-9d0bd48bfdb7"
+		},
+		{
+			"id": "aada1a6a-848d-89da-fc23-0ef6f71219d9",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/categories/26",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [
+				{
+					"key": "color",
+					"value": "#cecede",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "category",
+					"value": "casaasd",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455297666147,
+			"name": "Category.update",
+			"description": "",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": [],
+			"folder": "c69de60d-6708-3fe8-506c-fccf39e0862d"
+		},
+		{
+			"id": "cc01a18c-0fde-c371-7687-ca8fe744f7c0",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/tasks/71",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [
+				{
+					"key": "category_id",
+					"value": "20",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "update",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "status",
+					"value": "0",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "upda desc",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455299993395,
+			"name": "tasks.update",
+			"description": "Atualiza TASK",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": []
+		},
+		{
+			"id": "e68438c7-0eed-4775-b661-f756fd20c7cb",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/categories",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "username",
+					"value": "admin@admin.com",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "admin",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_id",
+					"value": "android_code_lab_1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "client_secret",
+					"value": "2cn45hasdasdadasasd7bdsfa72",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "grant_type",
+					"value": "password",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "scope",
+					"value": "app_access,profile_read",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455294686444,
+			"name": "Category.index",
+			"description": "",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": [],
+			"folder": "c69de60d-6708-3fe8-506c-fccf39e0862d"
+		},
+		{
+			"id": "ef9e3c1c-bdf4-6761-25f0-0991ccbef045",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/categories",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "category",
+					"value": "testeaaasf",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "color",
+					"value": "#333333",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455297668468,
+			"name": "Category.store",
+			"description": "",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": [],
+			"folder": "c69de60d-6708-3fe8-506c-fccf39e0862d"
+		},
+		{
+			"id": "f1f49b0c-381d-7ab4-0ccc-83d37498bf2f",
+			"headers": "Authorization: Bearer {{token}}\n",
+			"url": "{{url}}/tasks",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "category_id",
+					"value": "20",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "teste",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "status",
+					"value": "1",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "description",
+					"value": "esdasd",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1455299558105,
+			"name": "tasks.store",
+			"description": "Criar TASK",
+			"collectionId": "39c48e18-ae34-396f-379f-701fb69f112a",
+			"responses": []
+		}
+	]
+}
