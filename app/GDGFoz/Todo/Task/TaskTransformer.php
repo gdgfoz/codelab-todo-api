@@ -77,18 +77,7 @@ class TaskTransformer extends Fractal\TransformerAbstract
             'isDone'      => boolval($task->status),
             'finalizedAt' => (string) $task->finalized_at,
             'createdAt'   => (string) $task->created_at,
-            'updatedAt'   => (string) $task->updated_at,
-
-            'links'   => [
-                [
-                    'rel' => 'self',
-                    'uri' => \URL::to('api/v1/tasks', $task->id) . "?" . \Request::getQueryString(),
-                ],
-                [
-                    'rel' => 'category',
-                    'uri' => \URL::to('api/v1/tasks/category', $task->category_id) . "?" . \Request::getQueryString(),
-                ]
-            ]
+            'updatedAt'   => (string) $task->updated_at
         ];
     }
 

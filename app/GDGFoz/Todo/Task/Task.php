@@ -8,6 +8,7 @@ class Task extends Model
 {
 
     public $relationships = ['category', 'user'];
+    public $dates  = ['finalized_at'];
 
     protected $fillable = [ 'name', 'description', 'user_id', 'category_id', 'status'];
 

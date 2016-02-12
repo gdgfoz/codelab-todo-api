@@ -7,6 +7,7 @@
 Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function ($router) {
 
     #Categories
+    $router->get('categories', 'CategoryController@index');
     $router->get('categories/{id}', 'CategoryController@show');
     $router->post('categories', 'CategoryController@store');
     $router->put('categories/{id}', 'CategoryController@update');
@@ -14,10 +15,10 @@ Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function ($router) 
 
     #Taks
     $router->get('tasks', 'TaskController@index');
-    $router->get('tasks/category/{id}', 'TaskController@findByCategory');
     $router->get('tasks/{id}', 'TaskController@show');
+    $router->get('tasks/category/{id}', 'TaskController@findByCategory');
     $router->post('tasks', 'TaskController@store');
-    $router->put('tasks/category/{id}', 'TaskController@update');
+    $router->put('tasks/{id}', 'TaskController@update');
     $router->delete('tasks/{id}', 'TaskController@destroy');
 
     #Profile
@@ -29,6 +30,8 @@ Route::group(['prefix' => 'api/v1', 'middleware' => 'cors'], function ($router) 
     $router->get('oauth/dialog', ['as' => 'oauth.authorize.getDialog', 'middleware' => ['auth', 'check-authorization-params'], 'uses' => 'OAuthController@getDialog']);
     $router->post('oauth/dialog', ['as' => 'oauth.authorize.postDialog', 'middleware' => ['auth', 'check-authorization-params'], 'uses' => 'OAuthController@postDialog']);
     $router->post('oauth/access_token', ['as' => 'oauth.authorize.accessToken', 'uses' => 'OAuthController@accessToken']);
+
+    $router->post('auth/register', 'SingUpController@register');
 
     #Docs
     $router->get('docs', function(){

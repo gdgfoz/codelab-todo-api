@@ -21,16 +21,15 @@ class DatabaseSeeder extends Seeder
         $this->truncateTables();
 
         $this->call(OAuthSeeder::class);
-        $this->call(CategorySeeder::class);
 
-        factory( \GDGFoz\User::class)->create([
+        factory( \App\User::class)->create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
             'remember_token' => str_random(10),
         ]);
 
-        factory(\GDGFoz\User::class, 2)->create();
+        factory(\App\User::class, 2)->create();
 
         \DB::statement('SET foreign_key_checks = 1');
 

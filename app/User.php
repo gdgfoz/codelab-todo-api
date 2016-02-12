@@ -42,4 +42,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany('GDGFoz\Todo\Category\Category', 'categories_users');
     }
+
+    public function tasks()
+    {
+        return $this->belongsToMany('GDGFoz\Todo\Task\Task');
+    }
 }

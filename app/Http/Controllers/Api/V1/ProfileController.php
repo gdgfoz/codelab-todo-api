@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Transformers\UserTransformer;
+use App\User;
+use GDGFoz\Todo\User\UserTransformer;
 
 class ProfileController extends Controller
 {
@@ -44,7 +45,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = \Auth::user();
+        $user = User::find(\Authorizer::getResourceOwnerId());
         return \ResponseFractal::respondItem($user, new UserTransformer());
     }
 

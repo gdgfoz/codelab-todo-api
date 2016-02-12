@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 
+use GDGFoz\Todo\Category\Category;
+use GDGFoz\Todo\Category\CategoryRepository;
 use GDGFoz\Todo\Task\TaskRepository;
+use GDGFoz\Todo\Task\TaskRequest;
 use GDGFoz\Todo\Task\TaskTransformer;
 
 use App\Http\Requests;
@@ -18,14 +21,22 @@ class TaskController extends Controller
     protected $taskRepository;
 
     /**
+     * @var CategoryRepository
+     */
+    protected $categoryRepository;
+
+    /**
      * CategoryController constructor.
      * @param TaskRepository $taskRepository
      * @internal param CategoryRepository $categoryRepository
      */
-    public function __construct(TaskRepository $taskRepository)
+    public function __construct(TaskRepository $taskRepository, CategoryRepository $categoryRepository)
     {
         $this->taskRepository = $taskRepository;
         $this->taskRepository->setPerPage(10);
+
+        $this->categoryRepository = $categoryRepository;
+
         $this->middleware('oauth:tasks_read',  ['only' => ['index', 'show', 'findByCategory']]);
         $this->middleware('oauth:tasks_write', ['only' => ['store', 'update', 'destroy']]);
     }
@@ -92,6 +103,19 @@ class TaskController extends Controller
         return \ResponseFractal::respondItem($task, new TaskTransformer());
     }
 
+    public function store(TaskRequest $requests)
+    {
+        $task = $requests->save();
+        return \ResponseFractal::respondCreateItemSucess($task, new TaskTransformer());
+    }
+
+    public function update(TaskRequest $requests, $taskId)
+    {
+        $task = $this->taskRepository->find($taskId);
+        $task = $requests->update($task);
+        return \ResponseFractal::respondUpdateItemSucess($task, new TaskTransformer());
+    }
+
     /**
      * Display tasks from category
      *
@@ -125,7 +149,7 @@ class TaskController extends Controller
      */
     public function findByCategory($id)
     {
-        $category = Category::find($id);
+        $category = $this->categoryRepository->find($id);
         if(is_null($category)) return \ResponseFractal::respondErrorNotFound('Categoria não encontrada');
 
         $tasks = $this->taskRepository->findByCategory($id)->paginate();

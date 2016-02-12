@@ -40,7 +40,7 @@ class CategoryRepository extends BaseRepository
     /**
      * @param $id
      * @param array $columns
-     * @return mixed
+     * @return Category
      */
     public function find($id, $columns = array('*'))
     {
@@ -51,7 +51,8 @@ class CategoryRepository extends BaseRepository
     protected function scopefindByUser()
     {
         $this->query->select('categories.*')
-                    ->join('categories_users', 'categories_users.category_id', '=', 'categories.id');
+                    ->join('categories_users', 'categories_users.category_id', '=', 'categories.id')
+                    ->where('categories_users.user_id', $this->getAuthUserId());
 
         return $this;
     }
